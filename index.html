@@ -158,27 +158,62 @@
             
             <div class="interface">
                 <h2 class="title">FALA <span>COMIGO</span></h2>
-                <form id="form-contato">
-                    <input type="text" name="nome" placeholder="Seu nome:" required>
-                    <input type="email" name="email" placeholder="Seu e-mail:" required>
-                    <input type="tel" name="celular" placeholder="Seu celular:">
-                  
-                    <select name="tipo_servico" required>
-                      <option value="" disabled selected>Escolha o tipo de serviço</option>
-                      <option value="landing_page">Landing Page</option>
-                      <option value="site_institucional">Site Institucional</option>
-                      <option value="pagina_vendas">Página de Vendas</option>
-                      <option value="pagina_captura">Página de Captura</option>
-                      <option value="loja_virtual">Loja Virtual</option>
-                      <option value="outro">Outro</option>
-                    </select>
-                  
-                    <textarea name="mensagem" placeholder="Insira sua mensagem" required></textarea>
-                  
-                    <div class="btn-enviar">
-                      <input type="submit" value="ENVIAR">
-                    </div>
-                  </form>
+                <form class="form-contato" id="formularioSite" onsubmit="enviarFormulario(event)">
+                <h2>Solicite seu Site Profissional</h2>
+                
+                <label>Nome completo:</label>
+                <input type="text" name="nome" required />
+
+                <label>E-mail:</label>
+                <input type="email" name="email" required />
+
+                <label>Cidade/Estado:</label>
+                <input type="text" name="cidade" required />
+
+                <label>Tipo de site desejado:</label>
+                <select name="tipo_site" required>
+                    <option value="">Selecione</option>
+                    <option value="Site institucional">Site institucional</option>
+                    <option value="Landing Page">Landing Page</option>
+                    <option value="Loja virtual">Loja virtual (e-commerce)</option>
+                    <option value="Outro">Outro</option>
+                </select>
+
+                <label>Já tem domínio e hospedagem?</label>
+                <select name="dominio" required>
+                    <option value="">Selecione</option>
+                    <option value="Sim">Sim</option>
+                    <option value="Não">Não</option>
+                </select>
+
+                <label>Estágio do projeto:</label>
+                <select name="estagio" required>
+                    <option value="">Selecione</option>
+                    <option value="Pesquisando">Apenas pesquisando</option>
+                    <option value="Decidido">Já decidi que quero um site</option>
+                    <option value="Fechar orçamento">Quero fechar orçamento</option>
+                </select>
+
+                <label>Orçamento estimado:</label>
+                <select name="orcamento" required>
+                    <option value="">Selecione</option>
+                    <option value="Menos de R$1000">Menos de R$1000</option>
+                    <option value="R$1000 a R$2000">R$1000 a R$2000</option>
+                    <option value="Acima de R$2000">Acima de R$2000</option>
+                </select>
+
+                <label>Deseja tráfego pago ou SEO?</label>
+                <select name="trafego" required>
+                    <option value="">Selecione</option>
+                    <option value="Sim">Sim</option>
+                    <option value="Não">Não</option>
+                </select>
+
+                <label>WhatsApp para contato:</label>
+                <input type="text" name="whatsapp" required />
+
+                <button type="submit" class="btn-contato">Enviar e Falar no WhatsApp</button>
+                </form>
             </div>
         </section>
     </main>
@@ -244,5 +279,28 @@
           if (response.ok) form.reset();
         });
       </script>
+
+    <script>
+        function enviarFormulario(event) {
+        event.preventDefault();
+        const form = event.target;
+        const dados = new FormData(form);
+        const mensagem = `Olá! Preenchi o formulário com os seguintes dados:\n\n` +
+        `*Nome:* ${dados.get('nome')}\n` +
+        `*E-mail:* ${dados.get('email')}\n` +
+        `*Cidade:* ${dados.get('cidade')}\n` +
+        `*Tipo de site:* ${dados.get('tipo_site')}\n` +
+        `*Domínio/hospedagem:* ${dados.get('dominio')}\n` +
+        `*Estágio do projeto:* ${dados.get('estagio')}\n` +
+        `*Orçamento estimado:* ${dados.get('orcamento')}\n` +
+        `*Deseja tráfego pago/SEO:* ${dados.get('trafego')}\n` +
+        `*WhatsApp:* ${dados.get('whatsapp')}`;
+
+        
+        const numero = '5531994038782'; // Ex: 5531999999999
+        const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+        window.open(url, '_blank');
+        }
+        </script>
 </body>
 </html>
