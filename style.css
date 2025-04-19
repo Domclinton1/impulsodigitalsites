@@ -404,6 +404,7 @@ section.sobre .flex {
     flex-direction: column;
     gap: 10px;
     margin-top: 40px;
+    margin-bottom: 40px;
   }
   form input,form textarea, form select {
     width: 100%;
@@ -417,6 +418,8 @@ section.sobre .flex {
   }
   form .btn-contato {
     color: white;
+    cursor: pointer;
+    
   }
   form textarea{
     resize: none;
@@ -556,6 +559,13 @@ section.sobre .flex {
 
   section.formulario {
     padding: 80px 8%;
+  }
+
+  form .btn-contato {
+    color: white;
+    cursor: pointer;
+    display: flex;
+    font-size: 100%;
   }
 
   footer .flex {
